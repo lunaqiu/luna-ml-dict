@@ -1,9 +1,19 @@
 ## A
 
+* auxillary information
+
+  辅助信息
+
 ## B
 
 * batch normalization
   把一个batch的x都变成$\frac{x-\mu}{\sigma}$ 
+
+* Bayesian parameter estimation 贝叶斯参数估计 (BPE)
+  $$
+  p(\theta|X)=\frac{p(X|\theta)p(\theta)}{\int{p(X|\theta)p(\theta)}~d\theta}
+  $$
+  ​
 
 ## D
 
@@ -47,6 +57,10 @@
 ## M
 
 *  maximum likelihood estimation 最大似然估计 MLE
+   $$
+   \hat \theta = \underset{\theta}{\text {argmax}}\prod_{i=1}^n p(X_i|\theta)
+   $$
+   ​
 
    一种对分布的参数估计方法，即模型已定，参数未知，求参数
 
@@ -56,6 +70,8 @@
    2. 对似然函数取对数，并整理；
    3. 求导数 ；
    4. 解似然方程
+
+   另一种是非参数估计，回避了对分布的假设。很多情况下我们没有分布以及条件分布（label）信息
 
 ## N
 
@@ -69,7 +85,7 @@
   $$
   f(x)=\frac{1}{nh}\sum_{i=1}^nK(\frac{x-x_i}{h})
   $$
-  其中，$K(\cdot)$ 是个kernel，核函数，$h$ 叫bandwidth，带宽
+  其中，$K(\cdot)$ 是个kernel，核函数，$h$ 叫bandwidth，带宽，常用$h=\frac{1}{\sqrt n}$ ，$x$ 是mean，
 
 ## Q
 
