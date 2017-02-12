@@ -15,11 +15,41 @@
   $$
   ​
 
+## C
+
+* convolution related concepts
+
+  参见[演示](https://github.com/vdumoulin/conv_arithmetic)
+
+  * padding
+
+    在图片周围添0，分arbitrary padding, half padding, full padding
+
+  * strides
+    步幅不是1，而是2啊，3啊
+
+    ​
+
 ## D
+
+* deconvolution
+
+  本义是conv的逆运算，但实际是transposed convolution的误用，参见此词条
+
+* distributed representation
+
+  词向量
+
+* ​
 
 ## E
 
-* Estimation of probability distribution (density)
+* encoder decoder structure
+
+  Language A => RNN encoder => hidden state S => RNN decoder => Language B
+
+
+* estimation of probability distribution (density)
 
   分成参数估计和非参数估计
 
@@ -85,7 +115,7 @@
   $$
   f(x)=\frac{1}{nh}\sum_{i=1}^nK(\frac{x-x_i}{h})
   $$
-  其中，$K(\cdot)$ 是个kernel，核函数，$h$ 叫bandwidth，带宽，常用$h=\frac{1}{\sqrt n}$ ，$x$ 是mean，
+  其中，$K(\cdot)$ 是个kernel，核函数，$h$ 叫bandwidth，带宽，常用$h=\frac{1}{\sqrt n}$ ，$x$ 是mean
 
 ## Q
 
@@ -93,7 +123,36 @@
 
 ## S
 
+* Stochastic Gradient Descent (SGD)
+
+  weight = weight - learning_rate * gradient
+
 ## T
+
+* training a model
+
+  A typical training procedure for a neural network is as follows:
+
+  * define the neural network that has some learnable parameters (or weights)
+
+  * iterate over a dataset of inputs:
+
+    * process input through network
+    * compute the loss (how far is the output from being correct)
+
+    * propagate gradients back into the network's parameters
+
+    * update the weights of the network
+
+      * typically using a simple update rule: weight = weight + learning_rate * gradient
+
+* transposed convolution
+
+  又名backward convolution, fractally strided convolution, upsampling convolution.
+
+  ![](no_padding_strides_transposed.gif)
+
+  ​
 
 ## U
 
