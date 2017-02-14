@@ -34,7 +34,13 @@
   * strides
     步幅不是1，而是2啊，3啊
 
-    ​
+* cross entropy 交叉熵
+
+  用分布 $p$ 的最优代码来沟通分布 $q$ 发生的事件，所需的平均信息长度
+  $$
+  H_p(q) =\sum_xq(x)\log_2(\frac{1}{p(x)})
+  $$
+  ​
 
 ## D
 
@@ -59,6 +65,14 @@
   ​
 
 
+* entropy 熵
+
+  沟通一个特定分布 $p$ 传递信息所需的最佳平均信息长度
+  $$
+  H(p)=\sum_xp(x)\log_2\frac{1}{p(x)}
+  $$
+  ​
+
 * estimation of probability distribution (density)
 
   分成参数估计和非参数估计
@@ -77,7 +91,26 @@
 
 ## F
 
+* f-divergence
+
+  * *f*-divergence of $q$ from $p$ is defined as定义如下
+
+    *f* 代表的是function $f(t)$
+
+  $$
+  D_f(p \| q)=\int_x f(\frac{dp}{dq})dq
+  $$
+
+  ​	KL divergence的corresponding $f(t)$ 是 $t\ln t$ 
+
+  * 好的性质：Non-negativity
+  * 坏的性质：当 f-divergence 是离散的（如在 JS 和 KL 中），我们可能在具有梯度的学习模型中遇到问题，因为散度损失并不是在每一处都是可微分的。
+
 ## G
+
+* GAN
+  * GAN 本质上是一种试图通过生成对抗数据，通过最小化 f-divergence（概率分布的差异）来学习真实数据分布的模型。
+  * loss function: 最初提出的 GAN 的最小最大目标的收敛可以解释为最小化 Jensen Shannon（JS）散度（divergence）。
 
 ## H
 
@@ -85,10 +118,38 @@
 
 ## J
 
+* JS散度 Jensen–Shannon divergence (JSD)
+  $$
+  D_{JS}(p \| q) = \frac{1}{2}D_{KL}(p\| m) + \frac{1}{2}D_{KL}(q\| m)\\
+  \text{in which }m=\frac{1}{2}(p+q)\\
+  D_{JS}(p \| q) =\frac{1}{2}\sum_xp(x)\log_2\frac{p(x)}{m(x)} + \frac{1}{2}\sum_xq(x)\log_2\frac{q(x)}{m(x)}
+  $$
+  ​
+
+  ​
+
 ## K
 
 * kernel
   * uinversal kernel/charasteristic kernel：能把空间填满的kernel
+
+* KL divergence, Kullback–Leibler divergence, KL散度
+
+  *  Kullback–Leibler divergence from $q$ to $p$ ，或者说 $p$ 相对于 $q$ 的KL散度 $D_q(p)$ 被定义为
+    $$
+    D_{KL}(p\| q)=D_q(p) = H_q(p) - H(p)\\
+    =\sum_xp(x)\log_2\frac{1}{q(x)} - \sum_xp(x)\log_2\frac{1}{p(x)}\\
+    =\sum_xp(x)\cdot\log_2\frac{p(x)}{q(x)}
+    $$
+    其中，$H(p)$ 为熵，沟通分布 $p$ 中发生的事件的最佳代码
+
+    $H_q(p)$ 为交叉熵，分布 $p$ 中发生的事件用分布 $q$ 的最优代码来沟通
+
+  * 注意，$D_q(p) \neq D_p(q)$ ，如下图：红色为 $q$ ，蓝色为 $p$ ，图(a)为 $D_{KL}(p\|q)$ 图(b)(c) 为 $D_{KL}(q\|p)$ 
+
+    ![](kl_divergence_ asymmetry.png)
+
+  ​
 
 * k nearest neighbor 
 
@@ -210,6 +271,7 @@
 
 
 
+
 ## S
 
 * Sigmoid function
@@ -245,7 +307,7 @@
 
 *   Stochastic Gradient Descent (SGD)
 
-        weight = weight - learning_rate * gradient
+          weight = weight - learning_rate * gradient
 
 ## T
 
@@ -301,6 +363,19 @@
 ## V
 
 ## W
+
+* Wasserstein distance
+
+  * 定义：最简单情形，分布 $p$ 和 $q$ 的Wasserstein距离定义为：边缘分布为 $p$ 和 $q$ 的联合分布 $P_{XY}$ ，期望 $E_{P_{XY}}[\|x-y\|_2^2]$ 的最小值的平方根。
+    $$
+    W_2(p, q)=\sqrt{\min_{P_{XY}}E_{P_{XY}}[\|x-y\|_2^2]}~~\text {s.t.}~~P_X\sim p, P_Y \sim q
+    $$
+    衡量了把数据从分布 $p$ 移动到分布 $q$ 时需要的平均距离最小值（可以类比为一堆	土从一个形状移动到另一个形状所需做功的最小值，也可以类比为，一堆木材，有许多供给地，很多需求地，如何用最少的成本从供给地移动到需求地）
+
+  *  优点：
+
+    * 连续
+    * 几乎无处不在的可微分
 
 ## X
 
